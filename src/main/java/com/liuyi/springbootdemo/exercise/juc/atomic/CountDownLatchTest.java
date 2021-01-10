@@ -1,4 +1,4 @@
-package com.liuyi.springbootdemo.exercise.juc;
+package com.liuyi.springbootdemo.exercise.juc.atomic;
 
 import java.util.concurrent.CountDownLatch;
 
