@@ -1,31 +1,22 @@
-package com.liuyi.springbootdemo;
+package com.liuyi.springbootdemo.exercise.jdbc;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.liuyi.springbootdemo.redis.RedisUtil;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.annotation.security.RunAs;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
-class SpringbootDemoApplicationTests {
-
-    @Autowired
-    private RedisUtil redisUtil;
-    @Test
-    void contextLoads() {
-        redisUtil.set("test123","liuyi",60);
-
-        System.out.println(redisUtil.get("test123"));
-
+/**
+ * @ClassName MysqlJdbcTest
+ * @description：
+ * @author：liuyi
+ * @Date：2021/1/11 23:18
+ */
+public class MysqlJdbcTest {
+    public static void main(String[] args) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -34,24 +25,33 @@ class SpringbootDemoApplicationTests {
 
         Connection conn = null;
         try {
-            System.out.println("啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊");
-            Connection conn1 = DriverManager.getConnection("jdbc:mysql://localhost/test_liuyi?" +
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/test_liuyi?" +
                     "user=root&password=123456");
-            redisUtil.set("connection_001", JSONObject.toJSONString(conn1),60);
-            System.out.println("aaaaaaaaaaaaa"+redisUtil.get("connection_001").toString());
-            conn = (Connection) JSON.parse(redisUtil.get("connection_001").toString());
+            String s = JSONObject.toJSONString(conn);
+            System.out.println(s);
+            conn = (Connection) JSON.parse(s);
         } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         }
+//        Map<String,Connection> map = new HashMap<>();
+//        map.put("test1",conn);
+//        new Thread(()->{
+//            Connection test1 = map.get("test1");
+//            try {
+//                test1.close();
+//            } catch (SQLException throwables) {
+//                throwables.printStackTrace();
+//            }
+//        }).start();
+
         Statement stmt = null;
         ResultSet rs = null;
 
         try {
             stmt = conn.createStatement();
-            stmt.cancel();
             rs = stmt.executeQuery("SELECT id FROM user");
 
             // or alternatively, if you don't know ahead of time that
@@ -87,5 +87,4 @@ class SpringbootDemoApplicationTests {
         }
 
     }
-
 }
