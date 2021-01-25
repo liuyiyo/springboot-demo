@@ -8,6 +8,9 @@ class SpringbootDemoApplicationTests {
 
     @Test
     void contextLoads() {
+        String str = "\0";
+        System.out.println(str);
+
     }
 
 }
