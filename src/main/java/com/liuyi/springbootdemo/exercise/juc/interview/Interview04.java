@@ -40,8 +40,6 @@ public class Interview04 {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
-
                 }
 
             }
