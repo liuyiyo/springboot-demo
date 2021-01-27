@@ -21,6 +21,5 @@ public class SetDemo {
         set.add(null);
         set.add("123");
         System.out.println(set.size());
-
     }
 }

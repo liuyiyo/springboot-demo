@@ -3,6 +3,7 @@ package com.liuyi.springbootdemo.exercise.collection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * @ClassName ListDemo
@@ -22,7 +23,6 @@ public class ListDemo {
         //创建一个只读集合
         List<Integer> list = Collections.unmodifiableList(arrayList);
         list.add(2);
-
 
 
 

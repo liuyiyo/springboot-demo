@@ -7,7 +7,7 @@ package com.liuyi.springbootdemo.redis;
 public class Person {
 
     private String name;
-    private Integer age ;
+    private Integer age;
 
     public String getName() {
         return name;

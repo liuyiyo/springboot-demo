@@ -1,10 +1,10 @@
-package com.liuyi.springbootdemo.exercise.jdbc.parser;
+package com.liuyi.springbootdemo.exercise.jdbc.parser.constant;
 
 import org.springframework.util.ObjectUtils;
 
 /**
  * @Author liuyi
- * @Description //格式化处理类枚举
+ * @Description //解析类型类枚举
  * @Date 2021/1/27 14:07
  **/
 public enum ParserTypeEnum {

@@ -1,6 +1,7 @@
-package com.liuyi.springbootdemo.exercise.jdbc.parser;
+package com.liuyi.springbootdemo.exercise.jdbc.parser.handle;
 
 import com.alibaba.druid.sql.ast.SQLStatement;
+import com.liuyi.springbootdemo.exercise.jdbc.parser.entity.ParserResult;
 
 /**
  * @Author liuyi
@@ -12,5 +13,5 @@ import com.alibaba.druid.sql.ast.SQLStatement;
 public interface MysqlFormat {
 
     //格式化方法
-    public void format(SQLStatement sqlStatement,FormatResult formatResult);
+    public void format(SQLStatement sqlStatement, ParserResult formatResult);
 }

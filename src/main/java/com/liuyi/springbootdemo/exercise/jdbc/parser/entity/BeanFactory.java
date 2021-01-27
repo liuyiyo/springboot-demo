@@ -1,4 +1,6 @@
-package com.liuyi.springbootdemo.exercise.jdbc.parser;
+package com.liuyi.springbootdemo.exercise.jdbc.parser.entity;
+
+import com.liuyi.springbootdemo.exercise.jdbc.parser.handle.MysqlFormat;
 
 /**
  * @Author liuyi
@@ -15,7 +17,7 @@ public enum BeanFactory {
      * @Description //获取对象
      * @Date 2021/1/27 15:54
      * @Param [className]
-     * @return com.liuyi.springbootdemo.exercise.jdbc.parser.MysqlFormat
+     * @return com.liuyi.springbootdemo.exercise.jdbc.parser.handle.MysqlFormat
      **/
     public MysqlFormat getBean(String className) {
         try {

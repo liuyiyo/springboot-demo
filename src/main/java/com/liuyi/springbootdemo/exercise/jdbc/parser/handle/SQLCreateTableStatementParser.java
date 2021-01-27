@@ -2,9 +2,8 @@ package com.liuyi.springbootdemo.exercise.jdbc.parser.handle;
 
 import com.alibaba.druid.sql.ast.SQLStatement;
 import com.alibaba.druid.sql.ast.statement.SQLCreateTableStatement;
-import com.liuyi.springbootdemo.exercise.jdbc.parser.FormatResult;
-import com.liuyi.springbootdemo.exercise.jdbc.parser.MysqlFormat;
-import com.liuyi.springbootdemo.exercise.jdbc.parser.ParserTypeEnum;
+import com.liuyi.springbootdemo.exercise.jdbc.parser.entity.ParserResult;
+import com.liuyi.springbootdemo.exercise.jdbc.parser.constant.ParserTypeEnum;
 
 /**
  * @ClassName SQLCreateTableStatementFormat
@@ -14,10 +13,13 @@ import com.liuyi.springbootdemo.exercise.jdbc.parser.ParserTypeEnum;
  */
 public class SQLCreateTableStatementParser implements MysqlFormat {
     @Override
-    public void format(SQLStatement sqlStatement,FormatResult formatResult) {
+    public void format(SQLStatement sqlStatement, ParserResult formatResult) {
         SQLCreateTableStatement sqlCreateTableStatement = (SQLCreateTableStatement)sqlStatement;
+        //设置表类型
         formatResult.setDbType(sqlCreateTableStatement.getDbType());
+        //设置解析类型
         formatResult.setParserType(ParserTypeEnum.CREATE_TABLE);
+        //设置表名
         formatResult.setTableName(sqlCreateTableStatement.getTableName());
     }
 }

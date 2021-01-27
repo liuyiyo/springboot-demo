@@ -1,6 +1,8 @@
-package com.liuyi.springbootdemo.exercise.jdbc.parser;
+package com.liuyi.springbootdemo.exercise.jdbc.parser.entity;
 
 import com.alibaba.druid.DbType;
+import com.liuyi.springbootdemo.exercise.jdbc.parser.constant.AlterTableTypeEnum;
+import com.liuyi.springbootdemo.exercise.jdbc.parser.constant.ParserTypeEnum;
 import lombok.Data;
 
 /**
@@ -10,7 +12,7 @@ import lombok.Data;
  * @Date：2021/1/26 17:03
  */
 @Data
-public class FormatResult {
+public class ParserResult {
     //数据库类型
     private DbType dbType;
 
@@ -20,11 +22,14 @@ public class FormatResult {
     //列名
     private String column;
 
-    //格式化类型(create_table,drop_table,alter_table,alter_index)
+    //索引
+    private String index;
+
+    //解析类型
     private ParserTypeEnum parserType;
 
-    //格式化子类型(alter_table或者alter_index的add、drop、modify、change等)
-    private String subParserType;
+    //ALTER_TABLE类型
+    private AlterTableTypeEnum alterTableTypeEnum;
 
     //子sql
     private String subSql;
