@@ -1,4 +1,4 @@
-package com.liuyi.springbootdemo.exercise.jdbc.format;
+package com.liuyi.springbootdemo.exercise.jdbc.parser;
 
 import com.alibaba.druid.sql.ast.SQLStatement;
 
@@ -12,5 +12,5 @@ import com.alibaba.druid.sql.ast.SQLStatement;
 public interface MysqlFormat {
 
     //格式化方法
-    public FormatResult format(SQLStatement sqlStatement);
+    public void format(SQLStatement sqlStatement,FormatResult formatResult);
 }

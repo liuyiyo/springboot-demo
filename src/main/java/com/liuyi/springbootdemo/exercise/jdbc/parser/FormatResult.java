@@ -1,4 +1,4 @@
-package com.liuyi.springbootdemo.exercise.jdbc.format;
+package com.liuyi.springbootdemo.exercise.jdbc.parser;
 
 import com.alibaba.druid.DbType;
 import lombok.Data;
@@ -20,10 +20,10 @@ public class FormatResult {
     //列名
     private String column;
 
-    //解析类型(create_table,drop_table,alter_table,alter_index)
-    private String parserType;
+    //格式化类型(create_table,drop_table,alter_table,alter_index)
+    private ParserTypeEnum parserType;
 
-    //解析子类型(alter_table或者alter_index的add、drop、modify、change等)
+    //格式化子类型(alter_table或者alter_index的add、drop、modify、change等)
     private String subParserType;
 
     //子sql

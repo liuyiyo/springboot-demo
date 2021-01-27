@@ -19,19 +19,11 @@ import java.util.List;
 public class DruidSqlParserDemo {
     public static void main(String[] args) {
         DbType dbType = JdbcConstants.MYSQL; // 可以是ORACLE、POSTGRESQL、SQLSERVER、ODPS等
-        String sql = "alter table student modify s_name varchar(40) collate utf8mb4_unicode_ci not null comment 'modify修改的名称';";
+        String sql = "alter table student add s_name varchar(40) collate utf8mb4_unicode_ci not null comment 'modify修改的名称';";
+//        String sql = "drop table test1;";
         List<SQLStatement> stmtList = SQLUtils.parseStatements(sql, dbType);
         SQLStatement sqlStatement = stmtList.get(0);
         System.out.println(sqlStatement.getClass().getSimpleName());
 
-        SQLCreateTableStatement mysql = new MySqlCreateTableStatement();
-        SQLColumnDefinition definition = new SQLColumnDefinition();
-        definition.setDbType(DbType.mysql);
-        definition.setName("test2");
-        definition.setComment("测试字段2");
-        SQLCharacterDataType dataType = new SQLCharacterDataType("varchar",70);
-        definition.setDataType(dataType);
-        mysql.addColumn(definition);
-        System.out.println(stmtList.size());
     }
 }
