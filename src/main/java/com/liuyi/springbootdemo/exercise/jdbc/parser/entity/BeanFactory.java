@@ -19,13 +19,11 @@ public enum BeanFactory {
      * @Param [className]
      * @return com.liuyi.springbootdemo.exercise.jdbc.parser.handle.MysqlFormat
      **/
-    public MysqlFormat getBean(String className) {
+    public <T> T getBean(Class<T> tClass,String className) {
         try {
             Class clz = Class.forName(className);
-            MysqlFormat obj = (MysqlFormat)clz.newInstance();
-            return obj;
+            return (T)clz.newInstance();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;

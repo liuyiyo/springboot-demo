@@ -28,7 +28,7 @@ public class ParserTest {
         List<SQLStatement> stmtList = SQLUtils.parseStatements(sql, dbType);
         SQLStatement sqlStatement = stmtList.get(0);
         String className = sqlStatement.getClass().getSimpleName();
-        MysqlFormat mysqlFormat = BeanFactory.INSTANCE.getBean(ParserTypeEnum.findClassName(className));
+        MysqlFormat mysqlFormat = BeanFactory.INSTANCE.getBean(MysqlFormat.class,ParserTypeEnum.findClassName(className));
         if (mysqlFormat == null) {
             throw new RuntimeException("暂时不支持当前语法解析，className===="+className);
         }
