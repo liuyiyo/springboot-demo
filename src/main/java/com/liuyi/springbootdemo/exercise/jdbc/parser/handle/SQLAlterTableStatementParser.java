@@ -84,6 +84,15 @@ public class SQLAlterTableStatementParser implements MysqlFormat {
                 formatResult.setAlterTableTypeEnum(AlterTableTypeEnum.INDEX_ADD);
                 formatResult.setSubSql(sqlIndexDefinition.toString());
                 break;
+            case "SQLAlterTableDropIndex" :
+                //处理添加索引语句
+                SQLAlterTableDropIndex index2 = (SQLAlterTableDropIndex)sqlAlterTableItem;
+                //设置索引名
+                formatResult.setIndex(index2.getIndexName().toString());
+                //设置子类型
+                formatResult.setAlterTableTypeEnum(AlterTableTypeEnum.INDEX_DROP);
+                formatResult.setSubSql(index2.toString());
+                break;
             default:
                 log.error("AlterTable不存在这样的子语句:"+alterTableStatement.toString());
                 throw new RuntimeException("AlterTable不存在这样的子语句:"+alterTableStatement.toString());

@@ -6,5 +6,5 @@ package com.liuyi.springbootdemo.exercise.jdbc.parser.constant;
  * @Date 2021/1/27 23:27
  **/
 public enum AlterTableTypeEnum {
-    COLUMN_ADD,COLUMN_DROP,COLUMN_MODIFY,COLUMN_CHANGE,INDEX_ADD,INDEX_DROP,INDEX_MODIFY,INDEX_CHANGE;
+    COLUMN_ADD,COLUMN_DROP,COLUMN_MODIFY,COLUMN_CHANGE,INDEX_ADD,INDEX_DROP;
 }

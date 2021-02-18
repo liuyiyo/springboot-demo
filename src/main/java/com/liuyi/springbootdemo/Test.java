@@ -11,19 +11,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class Test {
     public static void main(String[] args) {
-        Thread thread = new Thread(() -> {
-            for (int i = 0; i < 1000_000_000; i++) {
-                System.out.println(i);
-            }
-        });
-        thread.start();
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        thread.interrupt();
-
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("sdgdsgdsgsdgs")
+                .append(",");
+        String substring = stringBuffer.substring(0, stringBuffer.length() - 1);
+        System.out.println(substring);
     }
 }
 
