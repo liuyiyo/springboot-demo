@@ -11,11 +11,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class Test {
     public static void main(String[] args) {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("sdgdsgdsgsdgs")
-                .append(",");
-        String substring = stringBuffer.substring(0, stringBuffer.length() - 1);
-        System.out.println(substring);
+        String host = "jdbc:lighting://192.168.0.101:19504/dataBase";
+        System.out.println(host.substring(host.lastIndexOf("/")+1));
     }
 }
 

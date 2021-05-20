@@ -17,7 +17,7 @@ public class CountDownLatchTest {
         for (int i = 0; i < threads.length; i++) {
             threads[i] = new Thread(()-> {
                 System.out.println("当前线程执行完毕");
-                //没执行完一个线程，countDown一下
+                //每执行完一个线程，countDown一下
                 latch.countDown();
             });
         }

@@ -1,4 +1,4 @@
-package com.liuyi.springbootdemo.exercise.collection;
+package com.liuyi.springbootdemo.exercise.collection.map;
 
 import java.util.*;
 
@@ -34,7 +34,7 @@ public class MapDemo {
         //那为什么是两次扰动呢？答：这样就是加大哈希值低位的随机性，使得分布更均匀，从而提高对应数组存储下标位置的随机性&均匀性，
         //终减少Hash冲突，两次就够了，已经达到了高位低位同时参与运算的目的
         HashMap<String,Object> hashMap = new HashMap<>();
-        hashMap.put(null,null);
+        hashMap.put("1", 123);
         System.out.println(hashMap.get(null));
         //TreeMap不可以存放value为null的值，因为null没办法排序
         //TreeMap底层是通过红黑树实现的，所以在效率上肯定没有HashMap快

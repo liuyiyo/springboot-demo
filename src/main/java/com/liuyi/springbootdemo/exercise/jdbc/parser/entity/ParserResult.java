@@ -5,6 +5,7 @@ import com.liuyi.springbootdemo.exercise.jdbc.parser.constant.AlterTableTypeEnum
 import com.liuyi.springbootdemo.exercise.jdbc.parser.constant.ParserTypeEnum;
 import lombok.Data;
 
+
 /**
  * @ClassName FormatResult
  * @description：格式化结果类
@@ -33,5 +34,6 @@ public class ParserResult {
 
     //子sql
     private String subSql;
-    
+
+
 }

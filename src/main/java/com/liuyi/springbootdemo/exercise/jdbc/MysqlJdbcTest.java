@@ -1,13 +1,9 @@
 package com.liuyi.springbootdemo.exercise.jdbc;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Executor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassName MysqlJdbcTest
@@ -16,75 +12,120 @@ import java.util.concurrent.TimeUnit;
  * @Date：2021/1/11 23:18
  */
 public class MysqlJdbcTest {
-    public static void main(String[] args) {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    public static void main(String[] args){
+//        selectTest();
+//        batchInsert();
+    }
 
+    public static void batchInsert(){
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/test_liuyi?" +
-                    "user=root&password=123456");
-            String s = JSONObject.toJSONString(conn);
-            System.out.println(s);
-            conn = (Connection) JSON.parse(s);
+            conn = getConnection();
         } catch (SQLException ex) {
-            // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            ex.printStackTrace();
         }
-//        Map<String,Connection> map = new HashMap<>();
-//        map.put("test1",conn);
-//        new Thread(()->{
-//            Connection test1 = map.get("test1");
-//            try {
-//                test1.close();
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
-//        }).start();
-
-        Statement stmt = null;
+        PreparedStatement ptmt  = null;
         ResultSet rs = null;
-
         try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT id FROM user");
-
-            // or alternatively, if you don't know ahead of time that
-            // the query will be a SELECT...
-
-            if (stmt.execute("SELECT id FROM user")) {
-                rs = stmt.getResultSet();
+            //预编译SQL，减少sql执行，防止sql注入
+            ptmt  = conn.prepareStatement("INSERT INTO `test`.`user` (\n" +
+                    "\t`id`,\n" +
+                    "\t`name`,\n" +
+                    "\t`age`,\n" +
+                    "\t`sex`,\n" +
+                    "\t`address`,\n" +
+                    "\t`status`,\n" +
+                    "\t`create_user`,\n" +
+                    "\t`create_time`,\n" +
+                    "\t`modify_user`,\n" +
+                    "\t`modify_time`\n" +
+                    ") VALUES (?,?,?,?,?,?,?,?,?,?)");
+            //传参
+            for (int i = 1; i < 10; i++) {
+                ptmt.setInt(1, i+1);
+                ptmt.setString(2,"ly"+i);
+                ptmt.setByte(3,(byte)i);
+                ptmt.setString(4,"女");
+                ptmt.setString(5,"重庆市南岸区"+i);
+                ptmt.setByte(6,(byte)i);
+                ptmt.setInt(7,i);
+                ptmt.setDate(8,new Date(System.currentTimeMillis()));
+                ptmt.setInt(9,i);
+                ptmt.setDate(10,new Date(System.currentTimeMillis()));
+                ptmt.addBatch();
             }
-            while (rs.next()){
-                int anInt = rs.getInt(1);
-                System.out.println(anInt);
-
-            }
-
+            //执行
+            ptmt.executeBatch();
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException sqlEx) {
-                } // ignore
-                rs = null;
-            }
+            close(conn,ptmt,rs);
+        }
+    }
 
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException sqlEx) {
-                } // ignore
-                stmt = null;
+    //查询测试
+    public static void selectTest(Connection conn){
+//        Connection conn = null;
+//        try {
+//            conn = getConnection();
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+
+        PreparedStatement ptmt  = null;
+        ResultSet rs = null;
+        try {
+            //预编译SQL，减少sql执行，防止sql注入
+            ptmt  = conn.prepareStatement("SELECT id,name FROM user where id = ?");
+            //传参
+            ptmt.setInt(1, 1);
+            //执行
+            rs = ptmt.executeQuery();
+            while (rs.next()){
+                int anInt = rs.getInt(1);
+                String name = rs.getString(2);
+                System.out.println(anInt+":"+name);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            close(conn,ptmt,rs);
+        }
+    }
+
+
+    //获取连接
+    private static Connection getConnection() throws SQLException {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl("jdbc:mysql://node01/test");
+        config.setUsername("root");
+        config.setPassword("123456");
+        HikariDataSource ds = new HikariDataSource(config);
+        Connection conn = ds.getConnection();
+        return conn;
+    }
+    //关闭连接
+    private static void close(Connection conn,Statement ptmt,ResultSet rs){
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException sqlEx) {
+            } // ignore
+            rs = null;
+        }
+        if (ptmt != null) {
+            try {
+                ptmt.close();
+            } catch (SQLException sqlEx) {
+            } // ignore
+            ptmt = null;
+        }
+        if(conn!=null){
+            try {
+                conn.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
         }
-
     }
 }
