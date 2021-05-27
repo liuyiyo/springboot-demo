@@ -1,7 +1,4 @@
 package com.liuyi.springbootdemo.exercise.juc.interview;
-
-import java.util.concurrent.CountDownLatch;
-
 /**
  * @ClassName Interview04
  * @description：面试题

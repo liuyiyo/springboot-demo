@@ -11,8 +11,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class Test {
     public static void main(String[] args) {
-        String host = "jdbc:lighting://192.168.0.101:19504/dataBase";
-        System.out.println(host.substring(host.lastIndexOf("/")+1));
+        String sql = "select sd,dsg,sdg from rest from";
+        System.out.println(sql.indexOf("select"));
+        System.out.println(sql.indexOf("from"));
+        System.out.println("select * " + sql.substring(18));
+        System.out.println(sql.substring(7,17));
     }
 }
 
