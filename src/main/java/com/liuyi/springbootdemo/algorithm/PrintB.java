@@ -10,6 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 
 public class PrintB {
+
+    public static boolean isPowerOfTwo(int n) {
+        if(n==0) return false;
+        int count = 0;
+        for (int i = 31; i >=0 ; i--) {
+            count += (n & (1 << i))==0?0:1;
+            if(count>1) return false;
+        }
+        return true;
+    }
     //打印整数的二进制
     public static void print(int num){
         for (int i = 31; i >=0 ; i--) {

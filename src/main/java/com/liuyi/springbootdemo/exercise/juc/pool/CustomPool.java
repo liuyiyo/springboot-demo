@@ -1,7 +1,5 @@
 package com.liuyi.springbootdemo.exercise.juc.pool;
 
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-
 import java.util.concurrent.*;
 
 /**
