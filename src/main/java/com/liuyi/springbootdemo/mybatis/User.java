@@ -2,6 +2,8 @@ package com.liuyi.springbootdemo.mybatis;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @ClassName User
  * @description：
@@ -12,5 +14,10 @@ import lombok.Data;
 public class User {
     private int id;
     private String name;
-    public int age;
+    private int age;
+    private Integer aaa;
+    private byte[] bytes;
+    private List<Boolean> list;
+    private List<Integer> lis2;
+    private List<byte[]> lis3;
 }

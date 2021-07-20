@@ -12,10 +12,14 @@ import java.lang.reflect.Field;
  */
 public class ReflectTest {
     public static void main(String[] args) {
+        User user = new User();
         Class classz = User.class;
         Field[] fields = classz.getFields();
         System.out.println(fields.length);
         Field[] declaredFields = classz.getDeclaredFields();
         System.out.println(declaredFields.length);
+        for (Field declaredField : declaredFields) {
+            System.out.println(declaredField.getGenericType().getTypeName());
+        }
     }
 }
