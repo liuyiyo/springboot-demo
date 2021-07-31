@@ -19,8 +19,8 @@ public class TreeNodeUtil {
         TreeNode treeNode0 = new TreeNode(1,"主节点一",0);
         TreeNode treeNode01 = new TreeNode(2,"子节点一",1);
         TreeNode treeNode02 = new TreeNode(3,"子节点二",1);
-        TreeNode treeNode011 = new TreeNode(3,"子节点一一",2);
-        TreeNode treeNode021 = new TreeNode(3,"子节点二一",3);
+        TreeNode treeNode011 = new TreeNode(4,"子节点一一",2);
+        TreeNode treeNode021 = new TreeNode(5,"子节点二一",3);
         parentList.add(treeNode0);
         parentList.add(treeNode01);
         parentList.add(treeNode02);
