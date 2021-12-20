@@ -1,5 +1,6 @@
 package com.liuyi.springbootdemo;
 
+import org.mybatis.spring.annotation.MapperScan;
 import com.liuyi.springbootdemo.mqtt.MqttConsumer;
 import com.liuyi.springbootdemo.mybatis.CityMapper;
 import com.liuyi.springbootdemo.mybatis.User;
@@ -8,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
+@MapperScan("com.liuyi.springbootdemo.mybatisplus.mapper")
+public class SpringbootDemoApplication {
 public class SpringbootDemoApplication implements CommandLineRunner {
 
     @Autowired

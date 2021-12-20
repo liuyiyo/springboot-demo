@@ -28,8 +28,9 @@ public class PrintB {
         System.out.println();
     }
     public static void main(String[] args) {
-        print(0x100);
-        System.out.println(Long.MAX_VALUE);
+        print(0xFF);
+        print(0xFF00);
+        print(-1);
 //        int num = 4;
 //        print(num);
 //
