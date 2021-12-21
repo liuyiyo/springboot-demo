@@ -2,7 +2,6 @@ package com.liuyi.springbootdemo.mybatisplus.controller;
 
 import com.liuyi.springbootdemo.mybatisplus.entity.User;
 import com.liuyi.springbootdemo.mybatisplus.mapper.UserMapper;
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +24,7 @@ public class MybatisPlusController {
     public void test(){
         System.out.println(("----- selectAll method test ------"));
         List<User> userList = userMapper.selectList(null);
-        Assert.assertEquals(5, userList.size());
+//        Assert.assertEquals(5, userList.size());
         userList.forEach(System.out::println);
     }
 }
